@@ -27,6 +27,14 @@ Running on <PlatformName>
 
 ## Running the Apps
 
+### Prerequisites
+
+It's assumed the reader is familiar enough with KMP, and the context around [KT-52172](https://youtrack.jetbrains.com/issue/KT-52172/Multiplatform-Support-composite-builds), to have the requisite software installed.
+
+:warning: Before attempting to use this project; **you must edit the `local.properties` file** at `build-system/local.properties` with the location of your local Android SDK installation.  The Gradle projects at `library`, `app` and `composite` have their own apparent `local.properties` files too; but to avoid duplicated maintenance these are symlinked to `build-system/local.properties`, making this the only necessary edit.
+
+### Running without Composite (Baseline)
+
 This section describes how to run the projects today; in the absense of Gradle Composite support, for any interested developer to establish a baseline:
 
 - Because the Library and App projects are entirely separate Gradle projects; you will not be able to immediately build/run the `/app` project because the `org.example:library:1.0-SNAPSHOT` dependency will not be available.
@@ -37,11 +45,11 @@ This is a functional workflow, but sub-optimal in case we want to develop the Li
 
 :warning: Before proceeding to test Composite behaviours; you may need to clean any published `org.example:library:1.0-SNAPSHOT` artifact from within your Maven Local (`~/.m2`) folder.
 
-## Composite Project
+### Running via Composite Project
 
 An improved workflow should be possible by using the Composite project; this is intended to 'loosely couple' the Library and App projects in the same Gradle and - by extension - IDE workspace.
 
-### Desired Behaviour
+#### Desired Behaviour
 
 The Jetbrains IDE (IntelliJ/Android Studio) should, through Kotlin Multiplatform, evaluate the Composite project and its included builds consistently, so that:
 
