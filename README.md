@@ -3,7 +3,7 @@
 
 [KT-52172](https://youtrack.jetbrains.com/issue/KT-52172/Multiplatform-Support-composite-builds)
 
-This project is intended to exercise and test Kotlin Multiplatform's support for Gradle Composite Build ([KT-52172](https://youtrack.jetbrains.com/issue/KT-52172/Multiplatform-Support-composite-builds)).
+This project is intended to exercise and test Kotlin Multiplatform's support for [Gradle Composite Builds](https://docs.gradle.org/current/userguide/composite_builds.html) ([KT-52172](https://youtrack.jetbrains.com/issue/KT-52172/Multiplatform-Support-composite-builds)).
 
 The file layout of this project:
 
@@ -31,7 +31,7 @@ Running on <PlatformName>
 
 It's assumed the reader is familiar enough with KMP, and the context around [KT-52172](https://youtrack.jetbrains.com/issue/KT-52172/Multiplatform-Support-composite-builds), to have the requisite software installed.
 
-:warning: Before attempting to use this project; **you must edit the `local.properties` file** at `build-system/local.properties` with the location of your local Android SDK installation.  The Gradle projects at `library`, `app` and `composite` have their own apparent `local.properties` files too; but to avoid duplicated maintenance these are symlinked to `build-system/local.properties`, making this the only necessary edit.
+:warning: Before attempting to use this project; **you must edit the `local.properties` file** at `build-system/local.properties` with the location of your own local Android SDK installation.  The Gradle projects at `library`, `app` and `composite` have their own apparent `local.properties` files too; but to avoid duplicated maintenance these are symlinked to `build-system/local.properties`, making this the only necessary edit.
 
 ### Running without Composite (Baseline)
 
@@ -46,6 +46,8 @@ This is a functional workflow, but sub-optimal in case we want to develop the Li
 :warning: Before proceeding to test Composite behaviours; you may need to clean any published `org.example:library:1.0-SNAPSHOT` artifact from within your Maven Local (`~/.m2`) folder.
 
 ### Running via Composite Project
+
+ℹ️ The capabilities described here are subject to verification of [KT-52172](https://youtrack.jetbrains.com/issue/KT-52172/Multiplatform-Support-composite-builds)
 
 An improved workflow should be possible by using the Composite project; this is intended to 'loosely couple' the Library and App projects in the same Gradle and - by extension - IDE workspace.
 
