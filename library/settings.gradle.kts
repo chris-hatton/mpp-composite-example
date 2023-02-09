@@ -12,6 +12,6 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "library"
+//rootProject.name = "library"
 
 includeBuild("../build-system")

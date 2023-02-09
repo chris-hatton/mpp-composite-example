@@ -17,7 +17,7 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "app"
+//rootProject.name = "app"
 
 includeBuild("../build-system")
 include(
