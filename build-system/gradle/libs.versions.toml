@@ -1,5 +1,5 @@
 [versions]
-kotlin = "1.7.20" # See: https://kotlinlang.org/docs/releases.html#release-details
+kotlin = "1.8.20-Beta" # See: https://kotlinlang.org/docs/releases.html#release-details
 coroutines = "1.6.4"
 ktor = "2.1.3" # See: https://maven.pkg.jetbrains.space/public/p/ktor/eap/io/ktor/ktor/
 
@@ -7,7 +7,7 @@ ktor = "2.1.3" # See: https://maven.pkg.jetbrains.space/public/p/ktor/eap/io/kto
 build-buildkonfig = "0.12.0"
 # Nominate the version of the Android Gradle Plugin best suited to the IDE being used (if any)
 # Maintain this with values from: https://developer.android.com/reference/tools/gradle-api
-build-androidgradleplugin = "7.2.2"
+build-androidgradleplugin = "7.3.0"
 
 build-serializationplugin = "1.7.20"
 build-versions = "0.42.0"
@@ -31,7 +31,6 @@ android-cameralifecycle = "1.0.2"
 android-window = "1.0.0"
 android-materialdesign = "1.6.0"
 android-lifecycleruntime = "2.4.1"
-android-activitycompose = "1.4.0"
 android-barcodescanning = "17.0.2"
 android-playservices = "20.2.0"
 
@@ -43,17 +42,6 @@ test-androidjunit = "1.1.3"
 test-espresso = "3.4.0"
 test-turbine = "0.8.0"
 test-truth = "1.1.3"
-
-test.androidx.compose.junit4 = "1.1.0" # todo reference to compose?
-
-# Compose
-# For new [jetbrains compose](https://github.com/jetbrains/compose-jb) builds see:
-# - [artifact repository](https://maven.pkg.jetbrains.space/public/p/compose/dev/org/jetbrains/compose/ui/ui/)
-# - [github tags](https://github.com/jetbrains/compose-jb/tags)
-compose-jetbrainsmultiplatform = "1.2.1"
-
-# See [google maven repository](https://maven.google.com/web/index.html#androidx.compose.ui:ui) for releases.
-compose-googleandroid = "1.2.1"
 
 [libraries]
 
@@ -120,14 +108,7 @@ android-window = { module = "androidx.window:window", version.ref = "android-win
 android-materialdesign = { module = "com.google.android.material:material", version.ref = "android-materialdesign" }
 android-lifecycleruntime = { module = "androidx.lifecycle:lifecycle-runtime-ktx", version.ref = "android-lifecycleruntime" }
 android-lifecycleviewmodelsavedstate = { module = "androidx.lifecycle:lifecycle-viewmodel-savedstate", version.ref = "android-lifecycleruntime" }
-android-activitycompose = { module = "androidx.activity:activity-compose", version.ref = "android-activitycompose" }
 android-barcodescanning = { module = "com.google.mlkit:barcode-scanning", version.ref = "android-barcodescanning" } # https://developers.google.com/ml-kit/vision/barcode-scanning
-
-# Compose - https://developer.android.com/jetpack/compose/
-
-## Android
-compose-android-uitooling-core = { module = "androidx.compose.ui:ui-tooling", version.ref = "compose-googleandroid" }
-compose-android-uitooling-preview = { module = "androidx.compose.ui:ui-tooling-preview", version.ref = "compose-googleandroid" }
 
 example-library = "org.example:library:1.0-SNAPSHOT"
 
@@ -160,4 +141,3 @@ serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref 
 versions = { id = "com.github.ben-manes.versions", version.ref = "build-versions" }
 updates = { id = "nl.littlerobots.version-catalog-update", version.ref = "build-updates" }
 kover = { id = "org.jetbrains.kotlinx.kover", version.ref = "build-kover" }
-compose = { id = "org.jetbrains.compose", version.ref = "compose-jetbrainsmultiplatform" }

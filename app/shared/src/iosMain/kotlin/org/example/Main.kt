@@ -1,8 +1,5 @@
 package org.example
 
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.window.Application
 import kotlinx.cinterop.autoreleasepool
 import kotlinx.cinterop.cstr
 import kotlinx.cinterop.memScoped
@@ -40,11 +37,7 @@ class ExampleAppDelegate : UIResponder, UIApplicationDelegateProtocol {
         didFinishLaunchingWithOptions: Map<Any?,*>?
     ): Boolean {
         window = UIWindow(frame = UIScreen.mainScreen.bounds).apply {
-            rootViewController = Application("Example") {
-                MainView(
-                    modifier = Modifier.fillMaxSize()
-                )
-            }
+            rootViewController = UINavigationController()
             makeKeyAndVisible()
         }
         return true

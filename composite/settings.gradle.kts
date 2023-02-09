@@ -16,8 +16,12 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "composite"
+//rootProject.name = "composite"
 
 includeBuild("../build-system")
 includeBuild("../library")
-includeBuild("../app")
+includeBuild("../app") {
+//    dependencySubstitution {
+//        substitute(module("org.example:library")).using(project(":"))
+//    }
+}

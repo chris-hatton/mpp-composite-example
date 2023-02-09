@@ -6,7 +6,6 @@ val iosDeploymentTarget = "15.4"
 plugins {
     id("com.android.library")
     alias(libs.plugins.kotlin.multiplatform)
-    alias(libs.plugins.compose)
 }
 
 kotlin {
@@ -27,22 +26,9 @@ kotlin {
     ).forEach { iosTarget ->
         iosTarget.binaries {
             framework {
-                // Required by Compose/iOS
                 embedBitcode = BitcodeEmbeddingMode.DISABLE
                 baseName = project.name
-                freeCompilerArgs = freeCompilerArgs + listOf(
-                    // Linking requirements gleaned from: https://github.com/JetBrains/compose-jb/blob/master/experimental/examples/falling-balls-mpp/build.gradle.kts
-                    "-linker-option", "-framework", "-linker-option", "Metal",
-                    "-linker-option", "-framework", "-linker-option", "CoreText",
-                    "-linker-option", "-framework", "-linker-option", "CoreGraphics",
-                    // Disabling Bitcode verification is necessary for Compose/iOS, its binaries confuse LLVM.
-                    "-Xdisable-phases=VerifyBitcode",
-                )
             }
-        }
-        iosTarget.compilations.all {
-            // If we don't specify this; then the toolchain defaults to targeting iOS 9.0, which fails for Compose/iOS
-            kotlinOptions.freeCompilerArgs += "-Xoverride-konan-properties=osVersionMin.ios_x64=$iosDeploymentTarget;osVersionMin.ios_arm64=$iosDeploymentTarget"
         }
     }
 
@@ -51,12 +37,7 @@ kotlin {
     sourceSets {
         val commonMain by getting {
             dependencies {
-                implementation(libs.example.library)
-
-                implementation(compose.ui)
-                implementation(compose.runtime)
-                implementation(compose.material)
-                implementation(compose.foundation)
+                implementation(libs.example.library) // <-- COMPOSITE SUBSTITUTION SHOULD HAPPEN FOR THIS MODULE
                 implementation(libs.coroutines.core)
             }
         }
@@ -70,12 +51,7 @@ kotlin {
             // See `android` block for dependencies
         }
         val androidTest by getting
-        val desktopMain by getting {
-            dependencies {
-                implementation(compose.uiTooling)
-                implementation(compose.preview)
-            }
-        }
+        val desktopMain by getting
         val iosX64Main by getting
         val iosArm64Main by getting
         val iosSimulatorArm64Main by getting
@@ -93,21 +69,14 @@ kotlin {
 }
 
 android {
-    compileSdk = 32
+    compileSdk = 33
     sourceSets["main"].manifest.srcFile("src/androidMain/AndroidManifest.xml")
     defaultConfig {
         minSdk = 21
-        targetSdk = 32
-    }
-    buildFeatures {
-        compose = true
+        targetSdk = 33
     }
 
     dependencies {
-        debugImplementation(libs.compose.android.uitooling.core)
-        implementation(libs.compose.android.uitooling.preview)
-
         implementation(libs.android.appcompat)
-        implementation(libs.android.activitycompose)
     }
 }
