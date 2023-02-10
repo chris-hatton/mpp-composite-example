@@ -1,6 +1,11 @@
 
 plugins {
     alias(libs.plugins.kotlin.multiplatform)
+    application
+}
+
+application {
+    mainClass.set("MainKt")
 }
 
 kotlin {
